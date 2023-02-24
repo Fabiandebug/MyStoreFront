@@ -1,0 +1,33 @@
+<div *ngIf="cartItems.length; else emptyCart" class="cart">
+    <div class="cart__item" *ngFor="let cartItem of cartItems">
+      <img class="cart-item__image" src="{{ cartItem.url }}" />
+      <div class="cart-panel">
+        <div class="cart-detail">{{ cartItem.name }}</div>
+        <div class="cart-detail">$ {{ cartItem.price }}</div>
+        <div class="cart-detail">
+          <select [(ngModel)]="cartItem.amount" (ngModelChange)="selectChange($event, cartItem)" style="width: 100px" class="form-select" aria-label="Default select example">
+            <option *ngFor="let option of productCount" [ngValue]="option">{{ option }}</option>
+          </select>
+        </div>
+        <div class="cart-detail">
+          <button (click)="deleteItem(cartItem.id)" class="btn-primary">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <b>Total Price: {{ totalPrice | currency: 'USD' }}</b>
+    </div>
+    
+    <div class="users-form">
+      <app-usercheckout (checkout)="checkoutuser($event)"></app-usercheckout>
+    </div>
+    
+  </div>
+ 
+  <ng-template #emptyCart>
+    <div class="warning-message">
+     Your Cart is empty! <a routerLink="/">Go to products</a>.
+    </div>
+  </ng-template>
+
+  

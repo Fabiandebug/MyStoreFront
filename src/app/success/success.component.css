@@ -1,0 +1,24 @@
+.Checkout_success {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #8BC34A;
+}
+
+.confirmation__item {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.confirmation__item a {
+    color: #0277BD;
+    text-decoration: underline;
+}
