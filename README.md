@@ -27,6 +27,14 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
+# MyStore Project Overview
+
+MyStore is Angular application that allows users to view a list of available products to purchase, add them to a shopping cart, and ultimately complete the checkout process. 
+
+
+## Project Instructions
+The app uses the data.json file that was provided on the project starter file.
+
 ## Install the App dependencies 
 
  npm install 

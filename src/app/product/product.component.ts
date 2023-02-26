@@ -16,6 +16,7 @@ export class ProductComponent {
   products: Product[] = []
   selectedItem = '1';
   productCount: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+  cartProducts: Product[] = [];
 
   // Dependacy injection
   constructor(private ProductService: ProductService,
@@ -39,14 +40,13 @@ export class ProductComponent {
 
   addToCart(product: Product): boolean {
     try {
-      const cartProducts: Product[] = [];
-      let productInCart = cartProducts.find((ele) => ele.id === product.id);
+      let productInCart = this.cartProducts.find((ele: { id: number; }) => ele.id === product.id);
       if (productInCart) {
         productInCart.amount = this.selectedItem;
       } else {
-        cartProducts.push(Object.assign(product, { amount: this.selectedItem }));
+        this.cartProducts.push(Object.assign(product, { amount: this.selectedItem }));
       }
-      localStorage.setItem('products', JSON.stringify(cartProducts));
+      localStorage.setItem('products', JSON.stringify(this.cartProducts));
       alert(`${product.name} has been added to your cart.`);
       return true;
     } catch (error) {

@@ -37,6 +37,7 @@ export class CartComponent {
     localStorage.removeItem('products');
     try {
       localStorage.setItem('products', JSON.stringify(products));
+      alert("Product removed successfully")
     } catch (e) {
       console.error('Error setting cart products in local storage', e);
     }
@@ -55,9 +56,13 @@ export class CartComponent {
     this.calculateTotal();
   }
 
-  calculateTotal(): void {
-    this.totalPrice = this.cartService.getCartTotalPrice();
-    window.location.reload();
+  calculateTotal() {
+    this.totalPrice = this.cartItems.reduce((acc, item) => {
+      this.totalPrice = parseFloat(
+        (acc + item.price * Number(item.amount)).toFixed(2)
+      );
+      return this.totalPrice;
+    }, 0);
   }
 
   clearcart(): void {
