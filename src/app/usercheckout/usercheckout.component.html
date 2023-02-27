@@ -1,21 +1,29 @@
-<form #form ="ngForm"(ngSubmit)="submitForm()">
+<form [formGroup]="checkoutFrm"  (ngSubmit)="submitForm()">
     <h1>{{Title}}</h1>
     <label for="firstName">FirstName</label>
     <br>
-    <input type="text" name="firstName" required minlength="3" placeholder="(minimum 3 characters)"[(ngModel)]="firstName">
+    <input type="text" name="firstName" minlength="3" placeholder="(minimum 3 characters)"formControlName="firstName">
+    <br>
+    <span style="color: red;" *ngIf="firstName && firstName?.invalid && firstName.dirty">Requires more than 3 text characters</span>
     <br>
     <label for="LastName">LastName</label>
     <br>
-    <input type="text" name="lastName" required minlength="3" placeholder="(minimum 3 characters)"[(ngModel)]="lastName">
+    <input type="text" name="lastName"  minlength="3" placeholder="(minimum 3 characters)"formControlName="lastName">
+    <br>
+    <span style="color: red;" *ngIf="lastName && lastName?.invalid && lastName.dirty">Requires more than 3 text characters</span>
     <br>
     <label for="phone">Phone Number</label>
     <br>
-    <input type="text" name="phone" required minlength="10" placeholder="(10-digit number)"[(ngModel)]="phone">
+    <input type="text" name="phone"  minlength="10" placeholder="(10-digit number)"formControlName="phone">
+    <br>
+    <span style="color: red;" *ngIf="phone && phone?.invalid && phone.dirty">Requires 10 numbers</span>
     <br>
     <label for="credit_card">Credit Card Number</label>
     <br>
-    <input type="text" name="credit_card" required minlength="16" placeholder="(16-digit number)"[(ngModel)]="credit_card">
+    <input type="text" name="credit_card"  minlength="16" placeholder="(16-digit number)"formControlName="credit_card">
     <br>
-    <input type="submit" [disabled]="form.invalid" value="Submit" class="btn btn-primary">
+    <span style="color: red;" *ngIf="credit_card && credit_card?.invalid && credit_card.dirty">Requires 16 numbers</span>
+    <br>
+    <input type="submit" [disabled]="checkoutFrm.invalid" value="Submit" class="btn btn-primary">
 
 </form>

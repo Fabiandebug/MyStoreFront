@@ -38,6 +38,7 @@ export class CartComponent {
     try {
       localStorage.setItem('products', JSON.stringify(products));
       alert("Product removed successfully")
+      this.refresh()
     } catch (e) {
       console.error('Error setting cart products in local storage', e);
     }
@@ -75,5 +76,8 @@ export class CartComponent {
     this.cartService.clearCart()
     this.route.navigate(['success'])
 
+  }
+  refresh(): void {
+    window.location.reload();
   }
 }
